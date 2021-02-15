@@ -1,7 +1,6 @@
-var { AbstractRepository } = require('../repositories/abstract-repository');
+const { AbstractRepository } = require('../repositories/abstract-repository');
 
 class InMemoryRepository extends AbstractRepository {
-
   constructor() {
     super();
     this.data = {};
@@ -18,8 +17,8 @@ class InMemoryRepository extends AbstractRepository {
   async create(data) {
     const id = data[this.idName];
 
-    if (typeof id === "undefined") {
-      throw new Error("Missing entity Id");
+    if (typeof id === 'undefined') {
+      throw new Error('Missing entity Id');
     }
 
     if (await this.entityExists(id)) {
@@ -34,7 +33,7 @@ class InMemoryRepository extends AbstractRepository {
     return this.data[id];
   }
 
- async updateById(id, data) {
+  async updateById(id, data) {
     const oldEntity = await this.findById(id);
 
     const newId = Object.prototype.hasOwnProperty.call(data, this.idName) ? data[this.idName] : id;

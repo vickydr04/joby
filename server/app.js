@@ -1,15 +1,15 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var mongoose = require('mongoose');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const mongoose = require('mongoose');
 
-var indexRouter = require('./routes/index');
-var jobSearchesRouter = require('./routes/job-searches');
-var applicationsRouter = require('./routes/applications');
-var applicationUpdatesRouter = require('./routes/application-updates');
+const indexRouter = require('./routes/index');
+const jobSearchesRouter = require('./routes/job-searches');
+const applicationsRouter = require('./routes/applications');
+const applicationUpdatesRouter = require('./routes/application-updates');
 
-var app = express();
+const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
