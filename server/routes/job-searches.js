@@ -5,9 +5,9 @@ var router = express.Router();
 var repository = new SearchJobRepository();
 
 // Get the list of job searches.
-router.get('/', function(req, res) {
+router.get('/', async function(req, res) {
   try {
-    const entities = repository.findAll();
+    const entities = await repository.findAll();
     res.json(entities);
   } catch (err) {
     res.status(400).json({ message: err.message });
@@ -15,9 +15,9 @@ router.get('/', function(req, res) {
 });
 
 // Create a job search.
-router.post('/', function(req, res) {
+router.post('/', async function(req, res) {
   try {
-    repository.create(req.body);
+    await repository.create(req.body);
     res.end();
   } catch (err) {
     res.status(400).json({ message: err.message });
@@ -25,9 +25,9 @@ router.post('/', function(req, res) {
 });
 
 // Get a job search by id.
-router.get('/:jsId', function(req, res) {
+router.get('/:jsId', async function(req, res) {
   try {
-    const entity = repository.findById(req.params.jsId);
+    const entity = await repository.findById(req.params.jsId);
     res.json(entity);
   } catch (err) {
     res.status(400).json({ message: err.message });
@@ -35,9 +35,9 @@ router.get('/:jsId', function(req, res) {
 });
 
 // Update a job search by id.
-router.patch('/:jsId', function(req, res) {
+router.patch('/:jsId', async function(req, res) {
   try {
-    repository.updateById(req.params.jsId, req.body);
+    await repository.updateById(req.params.jsId, req.body);
     res.end();
   } catch (err) {
     res.status(400).json({ message: err.message });
@@ -45,9 +45,9 @@ router.patch('/:jsId', function(req, res) {
 });
 
 // Delete a job search by id.
-router.delete('/:jsId', function(req, res) {
+router.delete('/:jsId', async function(req, res) {
   try {
-    repository.deleteById(req.params.jsId);
+    await repository.deleteById(req.params.jsId);
     res.end();
   } catch (err) {
     res.status(400).json({ message: err.message });
