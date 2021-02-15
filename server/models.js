@@ -12,7 +12,7 @@ const jobSearchSchema = new Schema({
 const applicationSchema = new Schema({
    company: String,
    benefits: String,
-   parentId: {
+   jobSearchId: {
       type: Schema.Types.ObjectId,
       ref: 'JobSearch',
       required: true,
@@ -24,7 +24,12 @@ const applicationSchema = new Schema({
 const applicationUpdateSchema = new Schema({
    title: String,
    details: String,
-   parentId: {
+   jobSearchId: {
+     type: Schema.Types.ObjectId,
+     ref: 'JobSearch',
+     required: true,
+   },
+   appId: {
       type: Schema.Types.ObjectId,
       ref: 'Application',
       required: true,
