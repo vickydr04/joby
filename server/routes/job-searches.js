@@ -1,8 +1,8 @@
 var express = require('express');
 var { MongoDbRepository } = require('../repositories/mongodb-repository');
 var { JobSearch } = require('../models');
-var router = express.Router();
 
+var router = express.Router();
 var repository = new MongoDbRepository(JobSearch);
 
 // Get the list of job searches.
