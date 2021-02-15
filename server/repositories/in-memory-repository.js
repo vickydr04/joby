@@ -1,26 +1,22 @@
-class SearchJobRepository {
+var { AbstractRepository } = require('../repositories/abstract-repository');
+
+class InMemoryRepository extends AbstractRepository {
 
   constructor() {
-    this.idName = 'id';
-    this.data = {}
+    super();
+    this.data = {};
   }
 
   async entityExists(id) {
     return Object.prototype.hasOwnProperty.call(this.data, id);
   }
 
-  async validateEntityExists(id) {
-    if (!(await this.entityExists(id))) {
-      throw new Error(`Entity with id "${id}" does not exist`);
-    }
-  }
-
   async findAll() {
     return Object.values(this.data);
   }
 
-  async create(entity) {
-    const id = entity[this.idName];
+  async create(data) {
+    const id = data[this.idName];
 
     if (typeof id === "undefined") {
       throw new Error("Missing entity Id");
@@ -30,7 +26,7 @@ class SearchJobRepository {
       throw new Error(`Entity with id "${id}" already exists`);
     }
 
-    this.data[id] = entity;
+    this.data[id] = data;
   }
 
   async findById(id) {
@@ -63,4 +59,4 @@ class SearchJobRepository {
   }
 }
 
-module.exports = { SearchJobRepository };
+module.exports = { InMemoryRepository };

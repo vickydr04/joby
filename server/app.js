@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var jobSearchesRouter = require('./routes/job-searches');
@@ -20,5 +21,7 @@ app.use('/', indexRouter);
 app.use('/job-searches', jobSearchesRouter);
 app.use('/job-searches/:jsId/applications', applicationsRouter);
 app.use('/job-searches/:jsId/applications/:appId/updates', applicationUpdatesRouter);
+
+mongoose.connect('mongodb://localhost/joby', { useNewUrlParser: true, useUnifiedTopology: true });
 
 module.exports = app;

@@ -1,8 +1,8 @@
 var express = require('express');
-var { SearchJobRepository } = require('../repositories/search-job-repository');
+var { MongoDbRepository } = require('../repositories/mongodb-repository');
 var router = express.Router();
 
-var repository = new SearchJobRepository();
+var repository = new MongoDbRepository();
 
 // Get the list of job searches.
 router.get('/', async function(req, res) {
