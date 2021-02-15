@@ -1,8 +1,9 @@
 var express = require('express');
 var { MongoDbRepository } = require('../repositories/mongodb-repository');
+var { JobSearch } = require('../models');
 var router = express.Router();
 
-var repository = new MongoDbRepository();
+var repository = new MongoDbRepository(JobSearch);
 
 // Get the list of job searches.
 router.get('/', async function(req, res) {
@@ -17,8 +18,8 @@ router.get('/', async function(req, res) {
 // Create a job search.
 router.post('/', async function(req, res) {
   try {
-    await repository.create(req.body);
-    res.end();
+    const entity = await repository.create(req.body);
+    res.json(entity);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -35,6 +36,7 @@ router.get('/:jsId', async function(req, res) {
 });
 
 // Update a job search by id.
+// @todo fail when id is not valid
 router.patch('/:jsId', async function(req, res) {
   try {
     await repository.updateById(req.params.jsId, req.body);
