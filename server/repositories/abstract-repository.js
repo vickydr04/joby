@@ -39,4 +39,4 @@ class AbstractRepository {
   }
 }
 
-module.exports = {AbstractRepository};
+module.exports = { AbstractRepository };
