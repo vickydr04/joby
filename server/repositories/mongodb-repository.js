@@ -1,7 +1,6 @@
-var { AbstractRepository } = require('../repositories/abstract-repository');
+const { AbstractRepository } = require('../repositories/abstract-repository');
 
 class MongoDbRepository extends AbstractRepository {
-
   constructor(modelClass) {
     super();
     this.modelClass = modelClass;
@@ -17,6 +16,7 @@ class MongoDbRepository extends AbstractRepository {
   }
 
   async create(data) {
+    // eslint-disable-next-line new-cap
     const entity = new this.modelClass(data);
     return entity.save();
   }

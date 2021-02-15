@@ -1,9 +1,9 @@
-var express = require('express');
-var { MongoDbRepository } = require('../repositories/mongodb-repository');
-var { Application } = require('../models');
+const express = require('express');
+const { MongoDbRepository } = require('../repositories/mongodb-repository');
+const { Application } = require('../models');
 
-var router = express.Router({ mergeParams: true });
-var repository = new MongoDbRepository(Application);
+const router = express.Router({ mergeParams: true });
+const repository = new MongoDbRepository(Application);
 
 // Get the list of applications for a job search.
 router.get('/', async function(req, res) {
@@ -28,14 +28,14 @@ router.post('/', async function(req, res) {
 // Get an application by id.
 router.get('/:appId', async function(req, res) {
   try {
-      const entities = await repository.findAll({ _id: req.params.appId, jobSearchId: req.params.jsId });
-      if (entities.length === 0) {
-        throw new Error(`Entity with id "${req.params.appId}" does not exist in parent entity with id "${req.params.jsId}"`);
-      }
-      res.json(entities[0]);
-    } catch (err) {
-      res.status(400).json({ message: err.message });
+    const entities = await repository.findAll({ _id: req.params.appId, jobSearchId: req.params.jsId });
+    if (entities.length === 0) {
+      throw new Error(`Entity with id "${req.params.appId}" does not exist in parent entity with id "${req.params.jsId}"`);
     }
+    res.json(entities[0]);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
 });
 
 // Update an application by id.

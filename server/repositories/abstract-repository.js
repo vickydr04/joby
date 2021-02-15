@@ -1,5 +1,4 @@
 class AbstractRepository {
-
   constructor() {
     this.idName = 'id';
   }
