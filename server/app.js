@@ -22,6 +22,11 @@ app.use('/job-searches', jobSearchesRouter);
 app.use('/job-searches/:jsId/applications', applicationsRouter);
 app.use('/job-searches/:jsId/applications/:appId/updates', applicationUpdatesRouter);
 
+// Custom error handler
+app.use(function(err, req, res) {
+  res.status(400).json({ message: err.message });
+});
+
 mongoose.connect('mongodb://localhost/joby', { useNewUrlParser: true, useUnifiedTopology: true });
 
 module.exports = app;
