@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const { Schema } = require('mongoose');
 
 const jobSearchSchema = new Schema({
-  title: String,
   state: String,
+  title: String,
 },
 { timestamps: true });
 
