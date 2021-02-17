@@ -19,7 +19,7 @@ const Dashboard = () => {
           const loadedJobList = [];
           for (const key in responseData) {
             loadedJobList.push({
-              id: key,
+              id: responseData[key]._id,
               company: responseData[key].company,
             });
           }
